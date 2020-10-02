@@ -1,40 +1,44 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import SwitchDetails from './SwitchDetails'
 import SwitchItem from './SwitchItem';
+import Toolbar from './Toolbar';
+import {getSwitches} from '../flux/actions/switchesActions';
+import PropTypes from 'prop-types';
 
 class Board extends React.Component{
+    constructor(){
+        super()
+    }
+    componentDidMount(){
+        this.props.getSwitches();
+    }
     render(){
+        const{currentSwitches} = this.props.keyboard
+        // console.log("switchITEM:" + switchItem)
         return(
             <div id='main-board'>
                 <SwitchDetails></SwitchDetails>
                 <div id='product-board'>
-                    <form id='toolbar'>
-                        <input type="text" value='search' class='toolbar-text'></input>
-                        <input type="button" value='linear' class='toolbar-button'></input>
-                        <input type="button" value='tactile' class='toolbar-button'></input>
-                        <input type="button" value='clicky' class='toolbar-button'></input>
-                    </form>
+                    <Toolbar></Toolbar>
                     <div id='switch-container'>
-                        <SwitchItem></SwitchItem>
-                        <SwitchItem></SwitchItem>
-                        <SwitchItem></SwitchItem>
-                        <SwitchItem></SwitchItem>
-                        <SwitchItem></SwitchItem>
-                        <SwitchItem></SwitchItem>
-                        <SwitchItem></SwitchItem>
-                        <SwitchItem></SwitchItem>
-                        <SwitchItem></SwitchItem>
-                        <SwitchItem></SwitchItem>
-                        <SwitchItem></SwitchItem>
-                        <SwitchItem></SwitchItem>
-                        <SwitchItem></SwitchItem>
-                        <SwitchItem></SwitchItem>
-                        <SwitchItem></SwitchItem>
-                        <SwitchItem></SwitchItem>
+                        {currentSwitches.map(({_id, switchName, switchType}) =>
+                        <SwitchItem key={_id} list_id={_id} name={switchName.toLowerCase()} type={switchType.toLowerCase()}></SwitchItem>
+                        )}
                     </div>
                 </div>
             </div>
         )
     }
 }
-export default Board
+
+Board.propTypes={
+    getSwitches: PropTypes.func.isRequired,
+    keyboard: PropTypes.object.isRequired
+}
+
+const mapStateToProps = state => ({
+    keyboard: state.keyboard,
+});
+
+export default connect(mapStateToProps, {getSwitches})(Board);
