@@ -38,19 +38,16 @@ mongoose
   .then(() => console.log('MongoDB Connected...'))
   .catch(err => console.log(err));
 
-app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api/switches', switchesRouter);
 app.use("/testAPI", testAPIRouter);
 
-console.log(process.env.NODE_ENV)
-if(process.env.NODE_ENV === 'production'){
-  console.log("ran")
-  app.use(express.static('client/build'));
-  app.get('*', (req, res) =>{
-    res.sendFile(path.resolve(__dirname,'client', 'build', 'index.html'))
-  })
-}
+console.log("ran")
+app.use(express.static('client/build'));
+app.get('*', (req, res) =>{
+  res.sendFile(path.resolve(__dirname,'client', 'build', 'index.html'))
+})
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -68,5 +65,8 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+const port = process.env.port || 5000;
+app.listen(port, () => console.log('server started on port' + port))
 
 module.exports = app;
+
