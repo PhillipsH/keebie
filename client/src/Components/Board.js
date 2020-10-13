@@ -22,8 +22,8 @@ class Board extends React.Component{
                 <div id='product-board'>
                     <Toolbar></Toolbar>
                     <div id='switch-container'>
-                        {currentSwitches.map(({_id, switchName, switchType}) =>
-                        <SwitchItem key={_id} list_id={_id} name={switchName.toLowerCase()} type={switchType.toLowerCase()}></SwitchItem>
+                        {currentSwitches.map(({_id, switchName, switchType, img}) =>
+                        <SwitchItem key={_id} list_id={_id} name={switchName.toLowerCase()} type={switchType.toLowerCase()} img={require('../Assets/' + img)}></SwitchItem>
                         )}
                     </div>
                 </div>

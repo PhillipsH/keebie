@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from '../switch.jpg';
 import { connect } from 'react-redux';
 import {setDetails} from '../flux/actions/switchesActions';
 
@@ -14,9 +13,9 @@ class SwitchItem extends React.Component{
     render(){
         return(
             <div class='switch-items' onClick={()=>this.showSidebar()}>
-                <img src={logo} width='100%' height='width'/>
-                <h3>{this.props.name}</h3>
-                <span>{this.props.type}</span>
+                <img src={this.props.img} width='100%' height='width'/>
+                <h3><span className='switch-text'>{this.props.name}</span></h3>
+                <span className='switch-small'>{this.props.type}</span>
             </div>
         )
     }

@@ -12,7 +12,7 @@ function App() {
       <div className="App">
         <Navbar></Navbar>
         <h1 class='title-page'>keyboard switches</h1>
-        <p class='text-desc'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ultricies blandit metus nec faucibus.</p>
+        <p class='text-desc'>The keyboard switch, the part of the keyboard that makes the click and the clack.</p>
         <Board></Board>
 
       </div>
