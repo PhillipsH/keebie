@@ -43,6 +43,7 @@ app.use('/users', usersRouter);
 app.use('/api/switches', switchesRouter);
 app.use("/testAPI", testAPIRouter);
 
+console.log(process.env.NODE_ENV)
 if(process.env.NODE_ENV === 'production'){
   console.log("ran")
   app.use(express.static('client/build'));
