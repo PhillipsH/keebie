@@ -6,7 +6,6 @@ var logger = require('morgan');
 var cors = require("cors");
 var mongoose = require('mongoose');
 
-var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var switchesRouter = require('./routes/api/switches');
 var testAPIRouter = require("./routes/testAPI");
