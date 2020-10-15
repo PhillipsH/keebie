@@ -25,7 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // DB Config
 // const db = require('./config/keys').mongoURI;
-const db = "mongodb+srv://beep:!Impulsive32@cluster0.2esdn.mongodb.net/keyboard?retryWrites=true&w=majority";
+const db = process.env.database_config;
 
 // Connect to Mongo
 mongoose
